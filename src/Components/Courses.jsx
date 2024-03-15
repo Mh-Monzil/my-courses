@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Course from './Course';
+import PropTypes from 'prop-types'
 
 
-const Courses = () => {
+const Courses = ({addToCart}) => {
     const [courses, setCourses] = useState([]);
 
 useEffect(() => {
@@ -14,10 +15,18 @@ useEffect(() => {
     return (
         <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
             {
-                courses.map(course => <Course key={course.id} course={course}></Course>)
+                courses.map(course => <Course 
+                    key={course.id} 
+                    course={course}
+                    addToCart={addToCart}
+                    ></Course>)
             }
         </div>
     );
 };
+
+Courses.propTypes = {
+    addToCart : PropTypes.func
+}
 
 export default Courses;
